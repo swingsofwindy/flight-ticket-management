@@ -1,0 +1,103 @@
+<mxfile host="Electron" modified="2024-03-26T19:42:48.260Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="EzlakO4I2joTXCZDwO9g" version="23.1.5" type="device">
+  <diagram name="Page-1" id="upIIGumutkfmHrmHGwx6">
+    <mxGraphModel dx="1036" dy="606" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-1" value="Tiếp nhận chuyến bay" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="330" y="200" width="180" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-2" value="Người dùng" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="360" y="80" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-3" value="Tb nhập" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="120" y="220" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-4" value="Tb xuất" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="630" y="220" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-6" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="360" y="360" as="sourcePoint" />
+            <mxPoint x="480" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-7" value="" style="endArrow=none;html=1;rounded=0;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="360" y="400" as="sourcePoint" />
+            <mxPoint x="480" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-8" value="Bộ nhớ phụ" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="375" y="368" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-9" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.334;entryY=0.056;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#330000;" parent="1" source="vXsHLUQNhhcEb8SKqynG-2" target="vXsHLUQNhhcEb8SKqynG-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="350" as="sourcePoint" />
+            <mxPoint x="390" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-10" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0.666;exitY=0.05;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;fillColor=none;" parent="1" source="vXsHLUQNhhcEb8SKqynG-1" target="vXsHLUQNhhcEb8SKqynG-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="280" as="sourcePoint" />
+            <mxPoint x="410" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-11" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="vXsHLUQNhhcEb8SKqynG-3" target="vXsHLUQNhhcEb8SKqynG-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="280" as="sourcePoint" />
+            <mxPoint x="460" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-12" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#330000;" parent="1" source="vXsHLUQNhhcEb8SKqynG-1" target="vXsHLUQNhhcEb8SKqynG-4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="280" as="sourcePoint" />
+            <mxPoint x="460" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-13" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;exitX=0.658;exitY=0.981;exitDx=0;exitDy=0;exitPerimeter=0;fillColor=#330000;" parent="1" source="vXsHLUQNhhcEb8SKqynG-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="280" as="sourcePoint" />
+            <mxPoint x="450" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-14" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;entryX=0.39;entryY=0.967;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#330000;" parent="1" target="vXsHLUQNhhcEb8SKqynG-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="360" as="sourcePoint" />
+            <mxPoint x="350" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-15" value="D1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="320" y="140" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-16" value="D6" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="465" y="140" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-17" value="D2" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="250" y="190" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-18" value="D3" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="330" y="310" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-19" value="D4" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="465" y="310" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-20" value="D5" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="540" y="200" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-21" value="D1: Mã chuyến bay, giá vé, sân bay đi, sân bay đến, ngày-giờ, thời gian bay, số lượng ghế hạng 1, số lượng ghế hạng 2, sân bay trung gian, thời gian dừng, ghi chú&lt;br&gt;D2: Không có&lt;br&gt;D3:&amp;nbsp;&#x9;+Danh sách các sân bay&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;+Thời gian bay tối thiểu&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;+ Số lượng sân bay trung gian tối đa&lt;br&gt;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;+&amp;nbsp;Thời gian dừng tối thiểu&lt;br&gt;&amp;nbsp;&lt;span style=&quot;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/span&gt;+ thời gian dừng tối đa&amp;nbsp;&lt;br&gt;D4: D1&lt;br&gt;D5: D4&amp;nbsp;&lt;br&gt;D6: Không có" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="80" y="510" width="490" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="vXsHLUQNhhcEb8SKqynG-22" value="B1: D1 tiếp nhận từ người dùng&lt;br&gt;B2: Kết nối cơ sở dữ liệu&lt;div&gt;B3: Đọc D3 từ bộ nhớ phụ&lt;/div&gt;&lt;div&gt;B4: Kiểm tra sân bay đi và sân bay đến (D1) có thuộc danh sách sân bay (D3) không&lt;/div&gt;&lt;div&gt;B5: Kiểm tra thời gian bay &amp;gt;= thời gian bay tối thiểu ?&lt;/div&gt;&lt;div&gt;B6: Kiểm tra số lượng sân bay trung gian &amp;lt;= số lượng sân bay trung gian tối đa?&lt;/div&gt;&lt;div&gt;B7: Kiểm tra thời gian dừng tối thiểu &amp;lt;= thời gian dừng &amp;lt;= thời gian dừng tối đa?&lt;/div&gt;&lt;div&gt;&lt;div&gt;B8: Nếu không thỏa mãn 1 trong các điều kiện trên thì đến B11&lt;/div&gt;&lt;div&gt;B9: Lưu D4 xuống bộ nhớ phụ&lt;/div&gt;&lt;div&gt;B10: Xuất D5 ra máy in&lt;/div&gt;&lt;div&gt;B11: Đóng kết nối cơ sở dữ liệu&lt;/div&gt;&lt;div&gt;B12: Kết thúc&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="80" y="730" width="480" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="IBjhHnj6VzlBTuVel6t2-1" value="&lt;b&gt;&lt;u&gt;Mô tả các luồng dữ liệu&lt;/u&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#6F0000;fillColor=#a20025;fontColor=#ffffff;" parent="1" vertex="1">
+          <mxGeometry x="40" y="455" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="IBjhHnj6VzlBTuVel6t2-2" value="&lt;b&gt;&lt;u&gt;Thuật toán&lt;/u&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#6F0000;fillColor=#a20025;fontColor=#ffffff;" parent="1" vertex="1">
+          <mxGeometry x="40" y="690" width="80" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

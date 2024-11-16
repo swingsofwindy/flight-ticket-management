@@ -1,0 +1,124 @@
+﻿CREATE DATABASE Flight_ticket_database
+USE Flight_ticket_database
+drop database Flight_ticket_database
+use master
+
+CREATE TABLE QUYEN
+(
+	MaQuyen INT PRIMARY KEY ,
+	TenQuyen VARCHAR(40)
+)
+
+insert into QUYEN values ('1','admin')
+insert into QUYEN values ('2','staff')
+
+
+CREATE TABLE NGUOIDUNG
+(
+	MaDangNhap VARCHAR(20) PRIMARY KEY,
+	TenNguoiDung VARCHAR(40),
+	SoDienThoai INT,
+	Email VARCHAR(40),
+	NgaySinh SMALLDATETIME,
+	passwordND VARCHAR(40),
+	maquyen int  FOREIGN KEY REFERENCES QUYEN(MaQuyen)
+)
+insert into NGUOIDUNG values ('0','admin','1','abc@gmail.com','2004/09/08','1','1')
+insert into NGUOIDUNG values ('1','s1','1','s1@gmail.com','2004/02/01','2','2')
+insert into NGUOIDUNG values ('2','s2','1','s2@gmail.com','2004/02/04','1','2')
+
+
+CREATE TABLE SANBAY
+(
+	MaSanBay VARCHAR(20) PRIMARY KEY,
+	TenSanBay VARCHAR(40)
+)
+
+CREATE TABLE HANGVE
+(
+	MaHangVe VARCHAR(20) PRIMARY KEY,
+	TenHangVe VARCHAR(40)
+)
+
+CREATE TABLE CHUYENBAY
+(
+	MaChuyenBay VARCHAR(20) PRIMARY KEY,
+	MaSanBayDi VARCHAR(20) FOREIGN KEY REFERENCES SANBAY(MaSanBay),
+	MaSanBayDen VARCHAR(20) FOREIGN KEY REFERENCES SANBAY(MaSanBay),
+	NgayBay SMALLDATETIME,
+	GioBay TIME,
+	Gia MONEY
+)
+
+CREATE TABLE KHACHHANG
+(
+	CMND VARCHAR(20) PRIMARY KEY,
+	TenKhachHang VARCHAR(40),
+	SoDienThoai INT,
+	Email VARCHAR(40),
+	NgaySinh SMALLDATETIME,
+	MaChuyenBay VARCHAR(20) FOREIGN KEY REFERENCES CHUYENBAY(MaChuyenBay),
+	MaSanBay VARCHAR(20) FOREIGN KEY REFERENCES SANBAY(MaSanBay)
+)
+
+CREATE TABLE CT_DATVE
+(
+	MaChuyenBay VARCHAR(20) FOREIGN KEY REFERENCES CHUYENBAY(MaChuyenBay),
+	CMND VARCHAR(20) FOREIGN KEY REFERENCES KHACHHANG(CMND),
+	MaHangVe VARCHAR(20) FOREIGN KEY REFERENCES HANGVE(MaHangVe),
+	TinhTrangVe INT,
+	NgayLap SMALLDATETIME,
+	PRIMARY KEY(MaChuyenBay, CMND)
+)
+
+CREATE TABLE TRUNGGIAN
+(
+	MaSanBay VARCHAR(20) FOREIGN KEY REFERENCES SANBAY(MaSanBay),
+	MaChuyenBay VARCHAR(20) FOREIGN KEY REFERENCES CHUYENBAY(MaChuyenBay),
+
+
+	layoverTime TIME,
+	Note VARCHAR(100),
+
+	PRIMARY KEY(MaSanBay, MaChuyenBay)
+)
+
+CREATE TABLE BANVE
+(
+	MaChuyenBay VARCHAR(20) FOREIGN KEY REFERENCES CHUYENBAY(MaChuyenBay),
+	CMND VARCHAR(20) FOREIGN KEY REFERENCES KHACHHANG(CMND),
+	MaHangVe VARCHAR(20) FOREIGN KEY REFERENCES HANGVE(MaHangVe),
+	MaSanBay VARCHAR(20) FOREIGN KEY REFERENCES SANBAY(MaSanBay),
+	NgayLap SMALLDATETIME,
+	TenKhachHang VARCHAR(40),
+	SoDienThoai INT,
+	Email VARCHAR(40),
+	PRIMARY KEY(MaChuyenBay, CMND)
+)
+
+CREATE TABLE CT_HANGVE
+(
+	MaHangVe VARCHAR(20) FOREIGN KEY REFERENCES HANGVE(MaHangVe),
+	MaChuyenBay VARCHAR(20) FOREIGN KEY REFERENCES CHUYENBAY(MaChuyenBay),
+	SoLuong INT,
+	PRIMARY KEY (MaHangVe, MaChuyenBay)
+)
+CREATE TABLE THAMSO
+(
+	SoSanBay	int,
+	TGBay		time,
+	SoSB_TG		int,
+	TGDungMin	int,
+	TGDungMax	int,
+	SoHangVe	int,
+	TgChamDV	time,
+	TgHuyV		time,
+)
+DROP TABLE NGUOIDUNG
+
+
+select count(*) from NGUOIDUNG
+select * from NGUOIDUNG
+insert into NGUOIDUNG values('1', NULL, NULL, NULL, NULL, NULL, '1')
+
+SELECT *FROM QUYEN

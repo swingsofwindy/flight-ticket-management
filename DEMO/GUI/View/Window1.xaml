@@ -1,0 +1,134 @@
+<UserControl x:Class="GUI.View.Window1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI.View"
+             xmlns:vm="clr-namespace:GUI.ViewModel"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             d:DesignHeight="720" d:DesignWidth="805"
+             Style="{StaticResource Page_Style}">
+    <Border Background="WhiteSmoke" CornerRadius="0 20 20 0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" MinWidth="230"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Page Title -->
+            <TextBlock x:Name="page_name" Text="Standard" Grid.Row="0" FontSize="32" FontWeight="SemiBold" Margin="10,10,0,10"
+                   HorizontalAlignment="Left" Foreground="#121518" Width="130" Grid.ColumnSpan="2"/>
+
+            <!-- Avatar and Change Avatar Button -->
+            <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" Width="529">
+                <Ellipse Width="250" Height="250" Stroke="Gray" StrokeThickness="1">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="AvatarBrush" Stretch="UniformToFill"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Button x:Name="Changeava_bt" Content="Change Avatar" Click="ChangeAvatarButton_Click" Height="40" Width="150" Margin="0,20,0,0" Background="#FF1DA2ED"/>
+            </StackPanel>
+
+            <!-- User Information -->
+            <Grid Grid.Row="1" VerticalAlignment="Bottom" Margin="42,0,30,37" Grid.ColumnSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="383"/>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Fullname and Birth -->
+                <TextBlock x:Name="F_Name" Text="Fullname:" Grid.Column="0" Margin="10,0,30,0" FontSize="16" VerticalAlignment="Center" Height="21"/>
+                <TextBox x:Name="UserName" Grid.Row="0" Margin="82,20,275,19"
+                     materialDesign:HintAssist.Hint="Nguyen Van A"
+                     FontSize="16"
+                     VerticalContentAlignment="Center"
+                     Padding="0,0,0,-10" Grid.ColumnSpan="3"/>
+                <TextBlock x:Name="bir_day" Text="Birth:" Grid.Row="0" Grid.Column="2" Margin="107,17,157,0" FontSize="16" VerticalAlignment="Top" Height="21"/>
+                <DatePicker x:Name="Birth"
+                        materialDesign:HintAssist.HelperText=""
+                        materialDesign:HintAssist.Hint="Pick Date"
+                        Style="{StaticResource MaterialDesignOutlinedDatePicker}" Margin="175,-4,17,0" IsTodayHighlighted="False" FontSize="16" VerticalAlignment="Top" Height="55" Grid.Column="2"/>
+
+                <!-- Email and Phone -->
+                <TextBlock x:Name="e_mail" Text="Email:" Grid.Row="1" Grid.Column="0" Margin="10,0,30,0" FontSize="16" VerticalAlignment="Center" Height="22"/>
+                <TextBox x:Name="Email" Grid.Row="1" Margin="82,20,275,21"
+                     IsReadOnly="False"
+                     IsReadOnlyCaretVisible="True"
+                     materialDesign:HintAssist.Hint="example@gmail.com"
+                     FontSize="16"
+                     VerticalContentAlignment="Center"
+                     Padding="0,0,0,-10" Grid.ColumnSpan="3" TextChanged="Email_TextChanged"/>
+                <TextBlock x:Name="phone_num" Text="Phone:" Grid.Row="1" Grid.Column="2" Margin="107,19,147,0" FontSize="16" VerticalAlignment="Top" Height="20"/>
+                <TextBox x:Name="Phone" Grid.Row="1" Grid.Column="2" Margin="175,20,17,22"
+                     materialDesign:HintAssist.Hint="0123456789"
+                     FontSize="16"
+                     VerticalContentAlignment="Center"
+                     Padding="0,0,0,-10"
+                     PreviewTextInput="Phone_PreviewTextInput" RenderTransformOrigin="0.494,0.479"/>
+
+                <!-- Role -->
+                <TextBlock x:Name="role" Text="Role:" Grid.Row="2" Grid.Column="0" Margin="10,0,30,0" FontSize="16" VerticalAlignment="Center" Height="22"/>
+                <TextBlock x:Name="Role" Grid.Row="2" Margin="82,0,104,0" FontSize="16" VerticalAlignment="Center" Height="22"/>
+
+                <!-- Buttons -->
+                <Button x:Name="changepass_bt" Content="Change Password"
+                        Grid.Row="2" Grid.Column="2" Width="178" Margin="0,14,0,25"
+                        HorizontalAlignment="Center" Background="#FF1DA2ED"
+                        Click="ChangePass_Click"/>
+                <Button x:Name="update_bt" Content="Update" Grid.Row="3" Width="188" Margin="258,0,0,26" HorizontalAlignment="Left" Click="UpdateButton_Click" Grid.ColumnSpan="3" Background="#FF1DA2ED"/>
+            </Grid>
+
+
+            <Popup Name="ChangePass_popupWin" Placement="Center" IsOpen="False"
+                AllowsTransparency="True" Focusable="True" PopupAnimation="Fade">
+                <Border Background="LightGray" BorderBrush="#FF1DA2ED"
+                        BorderThickness="2" CornerRadius="10"
+                        Width="350" Height="260">
+                    <StackPanel>
+                        <Label Grid.Row="0" Content="Old Password:" FontSize="15"/>
+                        <PasswordBox Grid.Row="0" Margin="5 0 5 0" x:Name="oldPassword"
+                                     Background="White" Height="40"
+                                     VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+
+                        <Label Grid.Row="1" Content="New Password:" FontSize="15"/>
+                        <PasswordBox Grid.Row="1" Margin="5 0 5 0" x:Name="newPassword"
+                                     Background="White" Height="40"
+                                     VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+
+                        <Label Grid.Row="2" Content="Confirm New Password:" FontSize="15"/>
+                        <PasswordBox Grid.Row="2" Margin="5 0 5 0" x:Name="confirmPassword"
+                                     Background="White" Height="40"
+                                     VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Button x:Name="Confirm_Pass" Content="Change"
+                                    Height="35" Width="80" Margin="90 10 5 0"
+                                    VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center"
+                                    Click="ConfirmPass_Click">
+                            </Button>
+                            <Button x:Name="Cancel_Pass" Content="Cancel"
+                                    Height="35" Width="80" Margin="5 10 0 0"
+                                    VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center"
+                                    Click="CancelPass_Click">
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Popup>
+        </Grid>
+    </Border>
+</UserControl>

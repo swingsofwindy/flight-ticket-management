@@ -1,0 +1,323 @@
+<UserControl x:Class="GUI.View.Window10"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GUI.View"
+             mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:GUI.ViewModel"
+             d:DesignHeight="720" d:DesignWidth="805"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             Style="{StaticResource Page_Style}">
+
+    <UserControl.DataContext>
+        <vm:Window10VM/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style x:Key="textBoxUnderline" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="10 0 0 0"/>
+            <Setter Property="Foreground" Value="#878787"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="0,0,0,2"/>
+        </Style>
+
+        <Style x:Key="squareButton" TargetType="Button">
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="#FFB9A1FA"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="0" BorderThickness="1" BorderBrush="#FFC1AEF6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFB049EE"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#FF9B06F4"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="gridEditButton" TargetType="Button">
+            <Setter Property="Background" Value="#FF1DA2ED" />
+            <Setter Property="BorderBrush" Value="#FF5593FF" />
+            <Setter Property="Foreground" Value="#ffffff" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Template" >
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Padding="5" BorderThickness="1" CornerRadius="5">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF46BAFC" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <Style x:Key="gridRemoveButton" TargetType="Button" BasedOn="{StaticResource gridEditButton}">
+            <Setter Property="Background" Value="#D32F2F" />
+            <Setter Property="BorderBrush" Value="#B71C1C" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F44336" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="gridButtonIcon" TargetType="Icon:PackIconMaterial">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="12" />
+            <Setter Property="Height" Value="12" />
+        </Style>
+    </UserControl.Resources>
+
+    <Border Background="WhiteSmoke" CornerRadius="0 20 20 0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" MinHeight="79"/>
+                <RowDefinition Height="420"/>
+                <RowDefinition Height="200"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Grid.ColumnSpan="2" Margin="0,5,0,5">
+                <TextBlock x:Name="name_page" Text="General rules" FontSize="32" FontWeight="SemiBold" Margin="10 20 0 0"
+                           HorizontalAlignment="Left" Foreground="#121518" Width="250"/>
+            </Grid>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <StackPanel Orientation="Vertical" Width="350">
+                    <Border Background="#FFFFFF" BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="10"
+                        Margin="5 0 5 0">
+                        <DataGrid x:Name="ListAirport" AutoGenerateColumns="False" ItemsSource="{Binding AirportList}" CanUserAddRows="False"
+                                  Margin="5 0 5 0" Padding="0 0 0 0" Height="350">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="AirportID" Binding="{Binding AirportID}" Width="*"/>
+                                <DataGridTextColumn Header="AirportName" Binding="{Binding AirportName}" Width="*"/>
+                                <DataGridTemplateColumn Header="" Width="Auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Click="Delete_Airport_Click" Style="{StaticResource gridRemoveButton}">
+                                                <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="newair_txtbl"
+                                   Text="New Airport: "
+                                   FontSize="13"
+                                   Margin="10 0 0 0"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center">
+                        </TextBlock>
+                        <TextBox x:Name="NewAirport" Text=""
+                                 FontSize="13"
+                                 materialDesign:HintAssist.HelperText=""
+                                 materialDesign:HintAssist.Hint="Airport Name"
+                                 VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                 Width="200">
+                        </TextBox>
+                        <Button x:Name="addairport" Content="+" Click="Add_Airport_Click"
+                                Margin="10 2.5 0 2.5">
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+
+
+
+                <StackPanel Orientation="Vertical" Width="430" Margin="20 0 0 0">
+                    <Border Background="#FFFFFF" BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="10"
+                            Margin="5 0 5 0">
+                        <DataGrid x:Name="ListTicketClass" AutoGenerateColumns="False" ItemsSource="{Binding TicketClassList}" CanUserAddRows="False" 
+                                  Margin="5 0 5 0" Padding="0 0 0 0" Height="350">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="TicketClassID" Binding="{Binding TicketClassID}" Width="*"/>
+                                <DataGridTextColumn Header="TicketClassName" Binding="{Binding TicketClassName}" Width="*"/>
+                                <DataGridTextColumn Header="BaseMultiplier" Binding="{Binding BaseMultiplier}" Width="*"/>
+                                <DataGridTemplateColumn Header="" Width="Auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Click="Delete_Class_Click" Style="{StaticResource gridRemoveButton}">
+                                                <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Border>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="newclass_txtbl"
+                                   Text="New Class: "
+                                   FontSize="13"
+                                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                                   Margin="10 0 0 0" Padding="0 0 0 0">
+                        </TextBlock>
+                        <TextBox x:Name="NewClassName" Text=""
+                                 FontSize="13"
+                                 materialDesign:HintAssist.HelperText=""
+                                 materialDesign:HintAssist.Hint="Class Name"
+                                 Width="190" Margin="0 0 0 0"
+                                 VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                        </TextBox>
+                        <TextBox x:Name="NewMultiplier" Text=""
+                                 FontSize="13"
+                                 materialDesign:HintAssist.HelperText=""
+                                 materialDesign:HintAssist.Hint="Multiplier"
+                                 Width="80" Margin="20 0 0 0"
+                                 VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                        </TextBox>
+                        <Button x:Name="add_class" Content="+" Click="Add_Class_Click"
+                                Margin="10 2.5 0 2.5">
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0 0 0 -15">
+                <Border Background="#FFFFFF" BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="10"
+                        Margin="5 2.5 5 2.5" Padding="0 10 0 5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70"/>
+                            <RowDefinition Height="70"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="260"/>
+                            <ColumnDefinition Width="260"/>
+                            <ColumnDefinition Width="300"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+                            <TextBlock x:Name="maxnumber_interair"
+                                       Text="Maximum number of intermediate airports: "
+                                       Margin="10 0 0 0" Padding="0 0 0 0" Width="150" Height="Auto"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       FontSize="13"
+                                       TextWrapping="Wrap"/>
+                            <TextBox x:Name="maxInterAirportTextBox"
+                                     Margin="0 0 0 0" Padding="0 0 0 0" Width="80"
+                                     VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                     TextChanged="maxInterAirportTextBox_TextChanged"
+                                     IsEnabled="False"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                            <TextBlock x:Name="min_downtime"
+                                       Text="Minimum down time: "
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Margin="0 0 0 0" Padding="0 0 0 0" Width="125" Height="Auto"
+                                       FontSize="13"/>
+                            <materialDesign:TimePicker x:Name="MinDownTime"
+                                                       materialDesign:HintAssist.HelperText=""
+                                                       materialDesign:HintAssist.Hint="Pick Time"
+                                                       Is24Hours="True"
+                                                       Style="{StaticResource MaterialDesignOutlinedTimePicker}"
+                                                       Margin="0 0 0 0" Padding="0 0 0 0" Width="110" Height="50"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                                       IsEnabled="False"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2">
+                            <TextBlock x:Name="lasttime_book"
+                                       Text="Last time to book tickets: "
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Margin="0 0 0 0" Padding="0 0 0 0" Width="145" Height="Auto"
+                                       FontSize="13"/>
+                            <materialDesign:TimePicker x:Name="LastBookTicket"
+                                                       materialDesign:HintAssist.HelperText=""
+                                                       materialDesign:HintAssist.Hint="Pick Time"
+                                                       Is24Hours="True"
+                                                       Style="{StaticResource MaterialDesignOutlinedTimePicker}"
+                                                       Margin="5 0 0 0" Padding="0 0 0 0" Width="110" Height="50"
+                                                       VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center"
+                                                       IsEnabled="False"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+                            <TextBlock x:Name="min_flighttime"
+                                       Text="Minimum flight time: "
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Margin="10 0 0 0" Padding="0 0 0 0" Width="125" Height="Auto"
+                                       FontSize="13"/>
+                            <materialDesign:TimePicker x:Name="MinFlightTime"
+                                                       materialDesign:HintAssist.HelperText=""
+                                                       materialDesign:HintAssist.Hint="Pick Time"
+                                                       Is24Hours="True"
+                                                       Style="{StaticResource MaterialDesignOutlinedTimePicker}"
+                                                       Margin="0 0 0 0" Padding="0 0 0 0" Width="110" Height="50"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                                       IsEnabled="False"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                            <TextBlock x:Name="max_downtime"
+                                       Text="Maximum downtime: "
+                                       Margin="0 0 0 0" Padding="0 0 0 0"  Width="125" Height="Auto"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       FontSize="13"/>
+                            <materialDesign:TimePicker x:Name="MaxDownTime"
+                                                       materialDesign:HintAssist.HelperText=""
+                                                       materialDesign:HintAssist.Hint="Pick Time"
+                                                       Is24Hours="True"
+                                                       Style="{StaticResource MaterialDesignOutlinedTimePicker}"
+                                                       Margin="0 0 0 0" Padding="0 0 0 0" Width="110" Height="50"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                                       IsEnabled="False"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2">
+                            <TextBlock x:Name="lasttime_cancel"
+                                       Text="Last time to cancel tickets: "
+                                       Margin="0 0 0 0" Padding="0 0 0 0"  Width="145" Height="Auto"
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       FontSize="13"/>
+                            <materialDesign:TimePicker x:Name="LastCancelTicket"
+                                                       materialDesign:HintAssist.HelperText=""
+                                                       materialDesign:HintAssist.Hint="Pick Time"
+                                                       Is24Hours="True"
+                                                       Style="{StaticResource MaterialDesignOutlinedTimePicker}"
+                                                       Margin="5 0 0 0" Padding="0 0 0 0" Width="110" Height="50"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                                       IsEnabled="False"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <StackPanel x:Name="EditPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" Margin="0 0 0 0">
+                    <Button x:Name="Confirm" Content="Accept"
+                            Width="72.5" Height="35" Background="#27AE60" Margin="0 10 2.5 0" Padding="2.5 0 2.5 0"
+                            Click="Button_Accept_Click"/>
+                    <Button x:Name="Undo" Content="X"
+                            Width="32.5" Height="35" Background="#E74C3C" Margin="2.5 10 0 0" Padding="2.5 0 2.5 0"
+                            Click="Button_Cancel_Click"/>
+                </StackPanel>
+                <Button Content="Edit" x:Name="EditButton"
+                        Width="110" Height="35" Margin="0 10 0 0" Padding="0 0 0 0" Background="#FF1DA2ED"
+                        VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                        Click="Button_Edit_main"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,114 @@
+<mxfile host="Electron" modified="2024-03-26T20:54:21.034Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="VVGy0-F5cdpjWyd_rXhR" version="23.1.5" type="device">
+  <diagram name="Trang-1" id="kYHfyQUYchHKSgXVpSWh">
+    <mxGraphModel dx="1050" dy="621" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-1" value="&lt;b&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;Người dùng&lt;/font&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="281.25" y="70" width="243.75" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" parent="1" source="psD6yAt_yMws2ZLbCAb7-2" target="psD6yAt_yMws2ZLbCAb7-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="464" y="192" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" parent="1" source="psD6yAt_yMws2ZLbCAb7-2" target="psD6yAt_yMws2ZLbCAb7-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="457" y="248" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="psD6yAt_yMws2ZLbCAb7-2" target="psD6yAt_yMws2ZLbCAb7-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-2" value="&lt;font color=&quot;#000000&quot; size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 24px; background-color: rgb(255, 255, 255);&quot;&gt;Tra cứu chuyến bay&lt;/b&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#006EAF;fontColor=#ffffff;" parent="1" vertex="1">
+          <mxGeometry x="285" y="180" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;" parent="1" source="psD6yAt_yMws2ZLbCAb7-3" target="psD6yAt_yMws2ZLbCAb7-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-3" value="&lt;b&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;Thiết bị nhập&lt;/font&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="200" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-4" value="&lt;b&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;Thiết bị xuất&lt;/font&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="590" y="200" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-6" value="&lt;b&gt;&lt;font style=&quot;font-size: 13px;&quot;&gt;Bộ nhớ phụ&lt;/font&gt;&lt;/b&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="296.25" y="340" width="213.75" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.238;entryY=0.105;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="psD6yAt_yMws2ZLbCAb7-1" target="psD6yAt_yMws2ZLbCAb7-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.271;entryY=1.015;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="psD6yAt_yMws2ZLbCAb7-6" target="psD6yAt_yMws2ZLbCAb7-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-26" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;D1&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="310" y="140" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-27" value="&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;D6&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="460" y="140" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-28" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;D2&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="210" y="190" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-31" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;D5&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="530" y="190" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-32" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;D3&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="310" y="290" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-33" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;D4&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="460" y="290" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-34" value="&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 20px;&quot;&gt;*Mô tả các luồng dữ liệu:&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#6F0000;fillColor=#a20025;fontColor=#ffffff;" parent="1" vertex="1">
+          <mxGeometry x="21.25" y="433" width="260" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-36" value="D1: Sân bay đi, sân bay đến, khởi hành, thời gian, số ghế trống, số ghế đăt" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="26.25" y="500" width="560" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-37" value="D2: Không có." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="30" y="530" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-38" value="D3: Danh sách chuyến bay (sân bay đi, sân bay đến, khởi hành, thời gian, số ghế trống, số ghế đặt)&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="25" y="570" width="740" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-39" value="D4: Không có." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="30" y="610" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-40" value="D5: Danh sách chuyến bay (sân bay đi, sân bay đến, khởi hành, thời gian, số ghế trống, số ghế đặt)&lt;br&gt;&amp;nbsp;thỏa tiêu chuẩn tra cứu D1" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="40" y="640" width="730" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-41" value="D6: D5." style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" parent="1" vertex="1">
+          <mxGeometry x="40" y="700" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-42" value="&lt;font size=&quot;1&quot; style=&quot;&quot;&gt;&lt;b style=&quot;font-size: 20px;&quot;&gt;*Thuật toán:&lt;/b&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=#6F0000;fillColor=#a20025;fontColor=#ffffff;" parent="1" vertex="1">
+          <mxGeometry x="20" y="750" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-43" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;B1: Nhận D1 từ người dùng.&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="25" y="808" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-44" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;B2: Kết nối cơ sở dữ liệu.&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="25" y="850" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-46" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;B3: Đọc D3 từ bộ nhớ phụ.&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="25" y="890" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-47" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;B4: Xuất D5 ra màn hình.&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="25" y="928" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-49" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;B5: Trả D6 cho người dùng.&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="25" y="968" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-50" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;B6: Đóng kết nối với cơ sở dữ liệu.&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="26.25" y="1008" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="psD6yAt_yMws2ZLbCAb7-51" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;B7: Kết thúc.&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="25" y="1048" width="120" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,647 @@
+﻿<UserControl x:Class="GUI.View.Window6"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:local="clr-namespace:GUI.View"
+             xmlns:vm="clr-namespace:GUI.ViewModel"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="720" d:DesignWidth="805"
+              Style="{StaticResource Page_Style}">
+    <UserControl.DataContext>
+        <vm:Window6VM/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <Style x:Key="gridEditButton" TargetType="Button">
+            <Setter Property="Background" Value="#FF1DA2ED" />
+            <Setter Property="BorderBrush" Value="#FF5593FF" />
+            <Setter Property="Foreground" Value="#ffffff" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Template" >
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" Padding="5" BorderThickness="1" CornerRadius="5">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF46BAFC" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <Style x:Key="gridRemoveButton" TargetType="Button" BasedOn="{StaticResource gridEditButton}">
+            <Setter Property="Background" Value="#D32F2F" />
+            <Setter Property="BorderBrush" Value="#B71C1C" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F44336" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="gridButtonIcon" TargetType="Icon:PackIconMaterial">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Width" Value="12" />
+            <Setter Property="Height" Value="12" />
+        </Style>
+        <Style x:Key="textHint" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Grid.Column" Value="1"/>
+            <Setter Property="Panel.ZIndex" Value="1"/>
+            <Setter Property="Margin" Value="10 0 0 0"/>
+            <Setter Property="Foreground" Value="#acb0af"/>
+        </Style>
+
+        <Style x:Key="textBox" TargetType="Control">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Grid.Column" Value="1"/>
+            <Setter Property="Margin" Value="10 0 0 0"/>
+            <Setter Property="Foreground" Value="#878787"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <Style x:Key="addButton" TargetType="Button">
+            <Setter Property="Background" Value="#FF1DA2ED"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="0 20 0 0"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Grid.Row" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="7">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF1DA2ED"/>
+                    <Setter Property="Foreground" Value="#ffffff"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="tabButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#121518"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#FF1DA2ED"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="mainbutton" TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Margin" Value="0 20 0 0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="25" BorderThickness="1" BorderBrush="#FF56B7FA" Padding="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF56B7FA"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="#FF56B7FA"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--==========================================================-->
+        <Style x:Key="CenterAlignedTextBlock" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="20"/>
+        </Style>
+        <!--==========================================================-->
+        <Style x:Key="CenterAlignedTextBox" TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="20"/>
+        </Style>
+        <!--==========================================================-->
+        <Style x:Key="CenterAlignedColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+        <!--==========================================================-->
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Foreground" Value="Black"/>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <!--
+        <Border Background="#ffffff" CornerRadius="0 20 20 0">
+            <Border  BorderThickness="1" Height="413" VerticalAlignment="Top" Margin="10,107,10,0" Background="#FFDEECFC" CornerRadius="20"/>
+        </Border>
+
+        <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="10"  Background="White" Margin="34,161,513,522" >
+            <Grid Margin="7 9">
+
+                <TextBlock x:Name="textMaChuyenBay"  MouseDown="textMaChuyenBay_MouseDown" Style="{StaticResource textHint}" Margin="-7,0,-6,0"/>
+                <TextBox  x:Name="txtMaChuyenBay" TextChanged="txtMaChuyenBay_TextChanged" Style="{StaticResource textBox}"/>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="10"  Background="White" Margin="496,163,51,522" >
+            <Grid Margin="7 9">
+
+                <TextBlock x:Name="textGiave"  MouseDown="textGiave_MouseDown" Style="{StaticResource textHint}" Margin="-7,0,-6,0"/>
+                <TextBox  x:Name="txtGiaVe" TextChanged="txtGiaVe_TextChanged" Style="{StaticResource textBox}"/>
+            </Grid>
+        </Border>
+        <Label Content="Mã chuyến bay" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="107" Foreground="Black" Margin="39,136,0,0" FontFamily="Cooper Black"/>
+        <Label Content="Giá vé" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="107" Foreground="Black" Margin="501,141,0,0" FontFamily="Cooper Black"/>
+        -->
+        <Border Background="WhiteSmoke" CornerRadius="0 20 20 0"/>
+
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="55"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Sell Ticket" Grid.Row="0" FontSize="32" FontWeight="SemiBold" Margin="20 10 0 0"
+                       HorizontalAlignment="Left" Foreground="#121518"/>
+
+            <TextBlock x:Name="Duration" Text="00:00"
+                       Margin="0,7,167,0"
+                       VerticalAlignment="Top" HorizontalAlignment="Right" TextAlignment="Center"
+                       Width="100"
+                       FontSize="18"
+                       Opacity="0.66" Grid.Row="1"/>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button
+                        HorizontalAlignment="Center" HorizontalContentAlignment="Center"
+                        VerticalAlignment="Center" VerticalContentAlignment="Center" 
+                        Margin="0 0 0 0" Padding="0 0 0 0" Grid.Row="1" 
+                        FontSize="20"
+                        Width="120" Height="45"
+                        Click="FindFlight_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Magnify"/>
+                    </StackPanel>
+                </Button>
+
+                <TextBlock Text="Flight ID:"
+                           Margin="20 0 0 0"
+                           VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"
+                           Width="80"
+                           FontSize="20"
+                           Opacity="0.66"/>
+
+                <TextBlock x:Name="FlightID" Text=""
+                           Margin="20 0 0 0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           FontSize="20"
+                           Width="120"
+                           Opacity="0.66"/>
+
+                <TextBlock x:Name="DepartureAirport" Text=""
+                           Margin="20 0 0 0"
+                           VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Right"
+                           Width="180"
+                           FontSize="20"
+                           Opacity="0.66"/>
+
+                <TextBlock Text="&#x27f6;"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           FontSize="40"
+                           Margin="0 0 0 0"/>
+
+                <TextBlock x:Name="DestinationAirport" Text=""
+                           Margin="5 0 0 0"
+                           VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Left"
+                           Width="180"
+                           FontSize="20"
+                           Opacity="0.66"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <TextBlock Text="Departure Time"
+                           Margin="10 0 0 0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           FontSize="20"
+                           Opacity="0.66"/>
+
+                <TextBlock x:Name="DepartureTime" Text=""
+                           Margin="10 0 0 0"
+                           VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Left"
+                           Width="130"
+                           FontSize="20"
+                           Opacity="0.66"/>
+
+                <TextBlock Text="Class"
+                           Margin="10 0 0 0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           FontSize="20"
+                           Opacity="0.66"/>
+
+                <TextBlock x:Name="TicketClass" Text=""
+                           Margin="10 0 0 0"
+                           VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Left"
+                           Width="160"
+                           FontSize="20"
+                           Opacity="0.66"/>
+
+                <TextBlock  Text="Ticket Price"
+                           Margin="10 0 0 0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           FontSize="20"
+                           Opacity="0.66"/>
+
+                <TextBlock x:Name="TicketPrice" Text="0"
+                           Margin="10 0 0 0"
+                           VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Left"
+                           Width="170"
+                           FontSize="20"
+                           Opacity="0.66"/>
+            </StackPanel>
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Padding="0" Margin="5" Grid.Row="3">
+                <ListView x:Name="MyListView" Grid.Row="3">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Width="759" Height="80">
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="ID:"
+                                                       Margin="5 0 0 0"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Right"
+                                                       FontSize="18"
+                                                       FontWeight="Bold"
+                                                       Opacity="1"/>
+
+                                            <TextBox x:Name="ID" Text="{Binding ID}"
+                                                       Margin="3 0 0 0"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Left"
+                                                       Width="150"
+                                                       FontSize="17"
+                                                       Opacity="1"/>
+
+                                            <TextBlock Text="Name:"
+                                                       Margin="5 0 0 0"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Right"
+                                                       FontSize="18"
+                                                       FontWeight="Bold"
+                                                       Opacity="1"/>
+
+                                            <TextBox x:Name="Name" Text="{Binding CustomerName}"
+                                                       Margin="10 0 0 0"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Left"
+                                                       Width="400"
+                                                       FontSize="17"
+                                                       Opacity="1"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal">
+
+                                            <TextBlock Text="Phone:"
+                                                       Margin="5 0 0 0"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Right"
+                                                       FontSize="18"
+                                                       FontWeight="Regular"
+                                                       Opacity="1"/>
+
+                                            <TextBox x:Name="Phone" Text="{Binding Phone}"
+                                                       Margin="3 0 0 0"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Left"
+                                                       Width="115"
+                                                       FontSize="17"
+                                                       Opacity="1"/>
+
+                                            <TextBlock Text="Email:"
+                                                       Margin="10 0 0 0"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Right"
+                                                       FontSize="18"
+                                                       FontWeight="Regular"
+                                                       Opacity="1"/>
+
+                                            <TextBox x:Name="Email" Text="{Binding Email}"
+                                                       Margin="10 0 0 0"
+                                                       VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Left"
+                                                       Width="240"
+                                                       FontSize="18"
+                                                       Opacity="1"/>
+
+                                            <DatePicker x:Name="BirthDay" SelectedDate="{Binding Birth}"
+                                                        Width="140" Height="40"
+                                                        Padding="0 0 0 0" Margin="30 0 0 6.9"
+                                                        materialDesign:HintAssist.HelperText=""
+                                                        materialDesign:HintAssist.Hint="mm/dd/yyyy"
+                                                        Grid.Row="5" VerticalAlignment="Top" />
+
+                                            <Button Width="Auto" Margin="40 0 30 0" Style="{StaticResource gridRemoveButton}"
+                                                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                    Command="{Binding DataContext.DeleteCommand, ElementName=MyListView}" CommandParameter="{Binding}">
+                                                <StackPanel>
+                                                    <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
+                                                </StackPanel>
+                                            </Button>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Border>
+
+
+            <StackPanel Grid.Row="4" Orientation="Horizontal">
+                <TextBlock Text="Ticket Quantity:"
+                           Margin="10 0 0 0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           FontSize="20"
+                           Opacity="0.66"/>
+
+                <TextBlock x:Name="TicketQuantity" Text="0"
+                           Margin="10 0 0 0"
+                           VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Left"
+                           Width="170"
+                           FontSize="20"
+                           Opacity="0.66"/>
+
+                <TextBlock Text="Total Price:"
+                           Margin="10 0 0 0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right"
+                           FontSize="20"
+                           Opacity="0.66"/>
+
+                <TextBlock x:Name="TotalPrice" Text="0"
+                           Margin="10 0 0 0"
+                           VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Left"
+                           Width="170"
+                           FontSize="20"
+                           Opacity="0.66"/>
+
+                <Button Content="Confirm"
+                        HorizontalAlignment="Center" HorizontalContentAlignment="Center"
+                        VerticalAlignment="Center" VerticalContentAlignment="Center" 
+                        Margin="0 0 0 0" Padding="0 0 0 0" Grid.Row="1" 
+                        FontSize="20"
+                        Style="{StaticResource addButton}"
+                        Width="120" Height="50"
+                        Click="Confirm_Click"/>
+            </StackPanel>
+        </Grid>
+
+
+
+        <Popup Name="SearchFlight_Popup" Placement="Center" IsOpen="False"
+                AllowsTransparency="True" Focusable="True" PopupAnimation="Fade">
+            <Border Background="LightGray" Width="500" Height="620"
+                    CornerRadius="10" BorderBrush="SkyBlue" BorderThickness="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55"/>
+                        <RowDefinition Height="55"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="55"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Content="Search" Grid.Row="0"
+                            HorizontalAlignment="Left" Margin="370 15 0 0"  VerticalAlignment="Top"
+                            FontSize="18"
+                            Click="SearchFlight_Click"
+                            Width="120" Height="40"/>
+
+                    <TextBox  x:Name="NumTicket" Grid.Row="1"
+                              Width="120" Height="40"
+                              materialDesign:HintAssist.Hint="Ticket Quantity"
+                              materialDesign:HintAssist.HelperText=""
+                              materialDesign:HintAssist.HintOpacity=".26"
+                              IsEnabled="True"
+                              Margin="360 13 0 0" Padding="0 0 0 0"
+                              VerticalAlignment="Top" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                              Foreground="Black">
+                    </TextBox>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 0 0 0" VerticalAlignment="Center">
+                        <ComboBox x:Name="SourceAirport_popup"
+                                  materialDesign:ComboBoxAssist.MaxLength="2"
+                                  materialDesign:HintAssist.Hint="From"
+                                  materialDesign:HintAssist.HintOpacity=".26"
+                                  IsEditable="True" IsReadOnly="False"
+                                  Margin="10 0 0 0" Padding="0 0 0 0"
+                                  VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center"
+                                  Height="50" Width="160"
+                                  DisplayMemberPath="AirportName"
+                                  SelectedValuePath="AirportID">
+                        </ComboBox>
+                        <ComboBox x:Name="DestinationAirport_popup" materialDesign:ComboBoxAssist.MaxLength="2"
+                                  materialDesign:HintAssist.Hint="To"
+                                  materialDesign:HintAssist.HintOpacity=".26"
+                                  IsEditable="True"
+                                  Margin="20 0 0 0" Padding="0 0 0 0"
+                                  VerticalAlignment="Top" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                  Height="50" Width="160"
+                                  DisplayMemberPath="AirportName"
+                                  SelectedValuePath="AirportID">
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <DatePicker x:Name="DepartureDay_popup"
+                                    Language="en-GB"
+                                    SelectedDateChanged="DepartureDay_popup_SelectedDateChanged"
+                                    materialDesign:HintAssist.HelperText=""
+                                    materialDesign:HintAssist.Hint="Pick Date"
+                                    Margin="10 10 0 0" Padding="50 0 0 0"
+                                    Width="160" Height="45"
+                                    materialDesign:HintAssist.HintOpacity=".26"
+                                    Grid.Row="5" VerticalAlignment="Top" IsTodayHighlighted="False"
+                                    Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+                        <ComboBox x:Name="TicketClass_popup"
+                                  Width="160" Height="40"
+                                  materialDesign:HintAssist.Hint="Ticket Class"
+                                  materialDesign:HintAssist.HelperText=""
+                                  materialDesign:HintAssist.HintOpacity=".26"
+                                  IsEnabled="True"
+                                  Margin="20 15 0 0" Padding="0 0 0 0"
+                                  DisplayMemberPath="TicketClassName"
+                                  SelectedValuePath="TicketClassID"
+                                  VerticalAlignment="Top" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                  Foreground="Black">
+                        </ComboBox>
+                    </StackPanel>
+
+                    <DataGrid x:Name="dataGridFlights" Grid.Row="2" IsReadOnly="True"
+                              AutoGenerateColumns="False" Margin="10"
+                              Width="480">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Flight ID" Binding="{Binding Flight.FlightID}" Width="80">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="ContentTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding}" TextAlignment="Center"/>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Remain" Binding="{Binding emptySeats}" Width="70">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="ContentTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding}" TextAlignment="Center"/>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Price " Binding="{Binding Flight.Price}" Width="120">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="ContentTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding}" TextAlignment="Center"/>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn Header="Departure" Binding="{Binding Flight.FlightDay, StringFormat={}{0:HH:mm}}" Width="80">
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        <Setter Property="ContentTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding}" TextAlignment="Center"/>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Setter Property="TextAlignment" Value="Center"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+
+                            <DataGridTemplateColumn Width="78" HeaderStyle="{StaticResource CenterAlignedColumnHeaderStyle}" IsReadOnly="False">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock Text=""
+                                               HorizontalAlignment="Center"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Select"
+                                                HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                                Margin="0 0 0 0"
+                                                Width = "75"
+                                                Click="SelectButton_Click_1"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="3">
+                        <Button Content="Close" Click="ClosePopup_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Popup>
+
+    </Grid>
+</UserControl>

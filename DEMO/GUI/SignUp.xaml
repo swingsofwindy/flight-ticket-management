@@ -1,0 +1,192 @@
+﻿<Window x:Class="GUI.SignUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="SignUp" Height="684" Width="1110"  WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+    <Window.Resources>
+        <Style x:Key="titleText1" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="36"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+        </Style>
+
+        <Style x:Key="normalText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="LineHeight" Value="28"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+        </Style>
+
+        <Style x:Key="loginStatusText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="LineHeight" Value="28"/>
+            <Setter Property="Foreground" Value="Red" />
+            <!--<Setter Property="TextWrapping" Value="Wrap"/>
+         <Setter Property="TextAlignment" Value="Center"/>
+         <Setter Property="Foreground" Value="#ffffff"/>-->
+        </Style>
+
+        <Style x:Key="button" TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="170"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#fdfefe"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="25" BorderThickness="1" BorderBrush="White" Padding="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#e8e8e8"/>
+                    <Setter Property="Foreground" Value="#e8e8e8"/>
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="#d9d9d9"/>
+                    <Setter Property="Foreground" Value="DimGray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="textHint" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Grid.Column" Value="1"/>
+            <Setter Property="Panel.ZIndex" Value="1"/>
+            <Setter Property="Margin" Value="10 0 0 0"/>
+            <Setter Property="Foreground" Value="#acb0af"/>
+        </Style>
+
+        <Style x:Key="textBox" TargetType="Control">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Grid.Column" Value="1"/>
+            <Setter Property="Margin" Value="10 0 0 0"/>
+            <Setter Property="Foreground" Value="#878787"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style x:Key="imgClose" TargetType="Image">
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="0 13 13 0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="mainbutton" TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Margin" Value="0 20 0 0"/>
+            <Setter Property="Background" Value="#FFB9A1FA"/>
+            <Setter Property="Foreground" Value="#FDFEFE"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="25" BorderThickness="1" BorderBrush="#FFC1AEF6" Padding="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFB049EE"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="#FF9B06F4"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,-115,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="454"/>
+            <ColumnDefinition Width="655"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="/Images/Rectangle 24.png" Margin="59,-50,198,20" RenderTransformOrigin="0.512,0.426" Grid.ColumnSpan="2">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.026"/>
+                    <TranslateTransform X="-0.028" Y="-0.004"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Border CornerRadius="20 20 20 20" Margin="0,183,0,1" Background="#FFA3D2F3">
+
+            <TextBlock TextWrapping="Wrap" Text="Sign Up" Margin="115,26,116,528" FontSize="40" Style="{StaticResource titleText1}"  Foreground="#ffffff"/>
+
+        </Border>
+        <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Margin="30,299,265,461" Background="White" >
+            <Grid Margin="7 9">
+
+                <TextBlock x:Name="textFName"  MouseDown="textFName_MouseDown" Style="{StaticResource textHint}" Margin="-7,0,-6,0"/>
+                <TextBox  x:Name="txtFName"  TextChanged="txtFName_TextChanged"  Style="{StaticResource textBox}"/>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Margin="266,299,29,461" Background="White" >
+            <Grid Margin="7 9">
+
+                <TextBlock x:Name="textLName"  MouseDown="textLName_MouseDown" Style="{StaticResource textHint}" Margin="-6,0,-6,0"/>
+                <TextBox  x:Name="txtLName" TextChanged="txtLName_TextChanged" Style="{StaticResource textBox}"/>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Margin="30,367,30,392" Background="White" >
+            <Grid Margin="7 9">
+
+                <TextBlock x:Name="textMailAdd"  MouseDown="textMailAdd_MouseDown" Style="{StaticResource textHint}" Margin="-7,0,-6,0"/>
+                <TextBox  x:Name="txtMailAdd" TextChanged="txtMailAdd_TextChanged" Style="{StaticResource textBox}"/>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Margin="30,563,30,196" Background="White" >
+            <Grid Margin="7 9">
+
+                <TextBlock x:Name="textPassword" MouseDown="textPassword_MouseDown" Style="{StaticResource textHint}" Margin="-7,0,-6,0"/>
+                <PasswordBox x:Name="txtPassword" PasswordChanged="txtPassword_PasswordChanged"  Style="{StaticResource textBox}"/>
+            </Grid>
+        </Border>
+        <Border BorderThickness="1" BorderBrush="#acb0af" CornerRadius="5" Margin="30,640,30,119" Background="White" >
+            <Grid Margin="7 9">
+
+                <TextBlock x:Name="textRePassword" MouseDown="textRePassword_MouseDown" Style="{StaticResource textHint}" Margin="-7,0,-6,0"/>
+                <PasswordBox x:Name="txtRePassword" PasswordChanged="txtRePassword_PasswordChanged" Style="{StaticResource textBox}"/>
+            </Grid>
+        </Border>
+        <Image Source="/Images/return.jpg" MouseUp="Image_MouseUp" Style="{StaticResource imgClose}" Margin="0,192,409,0" Height="27" Width="31"/>
+        <Label Content="First Name" HorizontalAlignment="Left" Margin="30,272,0,0" VerticalAlignment="Top" Width="69" Foreground="#FFFFFDFD"/>
+        <Label Content="Last Name" HorizontalAlignment="Left" Margin="264,273,0,0" VerticalAlignment="Top" Width="69" Foreground="#FFFFFDFD"/>
+        <Label Content="Mail Address" HorizontalAlignment="Left" Margin="30,341,0,0" VerticalAlignment="Top" Width="80" Foreground="#FFFFFDFD"/>
+        <Label Content="Enter Password" HorizontalAlignment="Left" Margin="30,537,0,0" VerticalAlignment="Top" Width="93" Foreground="#FFFFFDFD"/>
+        <Label Content="What best describes what do you do?" HorizontalAlignment="Left" Margin="30,416,0,0" VerticalAlignment="Top" Width="217" Foreground="#FFFFFDFD"/>
+        <Label Content="Date of birth" HorizontalAlignment="Left" Margin="30,472,0,0" VerticalAlignment="Top" Width="93" Foreground="#FFFFFDFD"/>
+        <Label Content="Repeat Password" HorizontalAlignment="Left" Margin="30,614,0,0" VerticalAlignment="Top" Width="93" Foreground="#FFFFFDFD"/>
+        <RadioButton Content="Admin" HorizontalAlignment="Left" Margin="103,456,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <RadioButton Content="Staff" HorizontalAlignment="Left" Margin="291,457,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="40,507,0,0" VerticalAlignment="Top" Width="96"  />
+        <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="175,507,0,0" VerticalAlignment="Top" Width="96"/>
+        <ComboBox x:Name="comboBox2" HorizontalAlignment="Left" Margin="313,508,0,0" VerticalAlignment="Top" Width="96"/>
+        <Button Content="Sign Up"
+         Style="{StaticResource mainbutton}"
+         IsDefault="True" Background="#FFD8EFFF" Margin="119,705,135,41" Foreground="#FF73AFC0" />
+    </Grid>
+</Window>
