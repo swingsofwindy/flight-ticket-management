@@ -9,11 +9,20 @@ using System.ComponentModel;
 
 namespace BLL
 {
-    public class InsertProcessor
+    public interface IAddMemberBLL
     {
-
+        void Add_Member(ACCOUNT user, ref string kq);
+    }
+    public class InsertProcessor: IAddMemberBLL
+    {
+     
         public InsertProcessor() { }
         // luu booking ticket vao db
+        public void Add_Member(ACCOUNT user, ref string kq)
+        {
+            kq = new DAL.AccountAccess().SignUp(user);
+        }
+   
         public string Add_BookingTicket(CustomerDTO customer, FlightDTO flight, TicketClassDTO ticketClass, DateTime date, int status)
         {
             // luu khach hang

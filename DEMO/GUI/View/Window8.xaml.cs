@@ -15,15 +15,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
 namespace GUI.View
 {
     /// <summary>
     /// Interaction logic for Window8.xaml
     /// </summary>
     /// 
-
-
     /* Mô tả:
      Tìm kiếm vé theo CustomerID, FlightID, TicketID, Status. Có thể bổ sung nhiều thuộc tính hơn nếu có thời gian
      Mỗi thuộc tính tìm kiếm đều có thể NULL
@@ -33,7 +30,6 @@ namespace GUI.View
      Khác: Khi vé được chèn vào db, sẽ có Status mặc định là 1 - Sold
                  Khi chuyến bay cất cánh, Status của vé chuyển sang 0 - Flown
                  Khi hủy vé, isDeleted = 1;
-
      */
     public partial class Window8 : UserControl
     {
@@ -41,10 +37,8 @@ namespace GUI.View
         public Window8()
         {
             InitializeComponent();
-            listTicket = new ObservableCollection<BookingTicketDTO>(){};
-
+            listTicket = new ObservableCollection<BookingTicketDTO>() { };
             dataGrid.ItemsSource = listTicket;
-
             Status.ItemsSource = new List<ST>
             {
                 new ST(){ID = "-1", Name = "All"},
@@ -54,7 +48,6 @@ namespace GUI.View
             Status.SelectedValue = "1";
             BLL.BookingTicket_BLL.UpdateStatus();
         }
-
         private void Click_Search(object sender, RoutedEventArgs e)
         {
             string state = string.Empty;
@@ -74,13 +67,12 @@ namespace GUI.View
                     MessageBox.Show($"Found {listTicket.Count} tickets");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 state = $"Error: {ex.Message}";
                 MessageBox.Show(state);
             }
         }
-
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -101,9 +93,8 @@ namespace GUI.View
                     return;
                 }
                 if (item != null)
-                {   
+                {
                     BLL.DeleteDataProcessor prc = new BLL.DeleteDataProcessor();
-
                     prc.DeleteTicket(item.TicketID);
                     if (prc.getState() != string.Empty)
                     {
@@ -114,7 +105,6 @@ namespace GUI.View
                 }
             }
         }
-
         private void Details_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
@@ -124,16 +114,13 @@ namespace GUI.View
             }
         }
     }
-
     public class IdToNameConverterTK : IValueConverter
     {
         private Dictionary<string, string> idToNameMap = new Ticket_Class_BLL().L_TicketClass().ToDictionary(ticketclass => ticketclass.TicketClassID, ticketclass => ticketclass.TicketClassName);
-
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value == null)
                 return "";
-
             string id = value.ToString();
             if (idToNameMap.TryGetValue(id, out string name))
             {
@@ -141,13 +128,11 @@ namespace GUI.View
             }
             return "Unknown";
         }
-
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotSupportedException("ConvertBack is not supported.");
         }
     }
-
     public class IdToNameConverterST : IValueConverter
     {
         private Dictionary<string, string> idToNameMap = new Dictionary<string, string>
@@ -155,12 +140,10 @@ namespace GUI.View
             {"1", "Sold"},
             {"2", "Flown"}
         };
-
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value == null)
                 return "";
-
             string id = value.ToString();
             if (idToNameMap.TryGetValue(id, out string name))
             {
@@ -168,13 +151,11 @@ namespace GUI.View
             }
             return "Unknown";
         }
-
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotSupportedException("ConvertBack is not supported.");
         }
     }
-
     public class ST
     {
         public ST() { }

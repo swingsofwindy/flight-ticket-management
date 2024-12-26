@@ -38,6 +38,7 @@ namespace GUI.View
 
     public partial class Window9 : UserControl
     {
+        
         Flight_BLL fl_bll = new Flight_BLL();
         Airport_BLL airport_bll = new Airport_BLL();
         Ticket_Class_BLL ticket_class_bll = new Ticket_Class_BLL();
@@ -54,7 +55,7 @@ namespace GUI.View
         public List<AirportDTO> airports { get; set; }
         public Window9()
         {
-            InitializeComponent();
+            //InitializeComponent();
 
             parameterDTO = new BLL.SearchProcessor().GetParameterDTO();
             airports = airport_bll.L_airport();
@@ -582,6 +583,8 @@ namespace GUI.View
             }
         }
 
+
+
         /*---------------------------------------------END Data Grid 2 aka IA---------------------------------------------------------*/
     }
 
@@ -604,5 +607,7 @@ namespace GUI.View
             }
             return null;
         }
+
     }
+
 }

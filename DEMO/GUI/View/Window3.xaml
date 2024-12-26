@@ -10,7 +10,7 @@
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              d:DesignHeight="720" d:DesignWidth="805"
-             Style="{StaticResource Page_Style}">
+                Style="{StaticResource Page_Style}">
     <UserControl.DataContext>
         <vm:Window3VM/>
     </UserControl.DataContext>

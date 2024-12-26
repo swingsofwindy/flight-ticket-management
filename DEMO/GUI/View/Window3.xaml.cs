@@ -29,11 +29,27 @@ namespace GUI.View
     {
         ObservableCollection<ACCOUNT> members = new ObservableCollection<ACCOUNT>();
         private List<string> suggestions = new List<string> { "Gợi ý 1", "Gợi ý 2", "Gợi ý 3" };
+
+        public DataGrid memberDataGrid;
+        public ObservableCollection<ACCOUNT> _members;
+        public Button deleteButton;
+
+        public bool IsSuccess { get; set; }
         public Window3()
         {
-            InitializeComponent();
-            var converter = new BrushConverter();
-            LoadMembers();
+            //InitializeComponent();
+            _members = new ObservableCollection<ACCOUNT>
+             {
+                 new ACCOUNT { UserID = "1", PermissonID = 1, UserName = "Admin User", Email = "admin@example.com", Phone = "123456789", Birth = new DateTime(1990, 1, 1), IsDeleted = 0 },
+                 new ACCOUNT { UserID = "2", PermissonID = 2, UserName = "Normal User", Email = "staff@example.com", Phone = "987654321", Birth = new DateTime(1995, 12, 25), IsDeleted = 0 }
+             };
+            memberDataGrid = new DataGrid
+            {
+                ItemsSource = _members
+            };
+
+            //var converter = new BrushConverter();
+            //LoadMembers();
         }
 
         private void LoadMembers()
@@ -62,16 +78,18 @@ namespace GUI.View
             f.Show();
         }
 
-        private void Delete_Click(object sender, RoutedEventArgs e)
+        public void Delete_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
+            IsSuccess = true;
             if (button != null)
             {
                 var data = button.DataContext as ACCOUNT;
-                if (data != null && MembersDataGrid.ItemsSource is ObservableCollection<ACCOUNT> collection)
+                if (data != null && memberDataGrid.ItemsSource is ObservableCollection<ACCOUNT> collection)
                 {   
                     if (data.PermissonID == 1)
                     {
+                        IsSuccess = false;
                         MessageBox.Show("You do not have permission to delete this member");
                         return;
                     }
@@ -80,6 +98,7 @@ namespace GUI.View
                     {   BLL.ACCOUNT_BLL prc = new BLL.ACCOUNT_BLL();
                         prc.deleteAccount(data.UserID);
                         collection.Remove(data);
+                        IsSuccess = true;
                     }
                 }
             }

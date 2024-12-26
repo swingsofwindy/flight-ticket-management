@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,11 +22,33 @@ namespace GUI
     /// </summary>
     public partial class Login : Window
     {
+        public TextBox Email { get; set; }
+        public PasswordBox Password { get; set; }
+        //private readonly IAccountBLL _accountBLL;
+        private IAccountBLL accountBLL=new ACCOUNT_BLL();
+
+        //public Login(IAccountBLL accountBLL) // Constructor nhận IAccountBLL
+        //{
+        //    accountBLL = accountBLL;
+        //}
+
+        // Thay đổi object thành bool và thêm getter và setter
+        public bool IsLoggedIn { get; private set; }
+
+        //public Login(IAccountBLL accountBLL)
+        //{
+        //    InitializeComponent();
+        //    _accountBLL = accountBLL;
+        //}
 
         public Login()
         {
             InitializeComponent();
+            Email = new TextBox();
+            Password = new PasswordBox();
+            accountBLL = accountBLL;
         }
+
         private void textEmail_MouseDown(object sender, MouseButtonEventArgs e)
         {
             txtEmail.Focus();
@@ -93,43 +116,69 @@ namespace GUI
             f.Show();
             Window.GetWindow(this).Close();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        static bool IsGmailAddress(string email)
         {
-
-
-            string email = txtEmail.Text;
-            string password = txtPassword.Password;
-
-            ACCOUNT_BLL accountBLL = new ACCOUNT_BLL();
+            // Regex kiểm tra email với đuôi @gmail.com
+            string pattern = @"^[a-zA-Z0-9._%+-]+@gmail\.com$";
+            return Regex.IsMatch(email, pattern);
+        }
+        public void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string email = Email.Text.Trim();
+            string password = Password.Password.Trim();
+            Console.WriteLine($"Email: {email}, Password: {password}");
             int permissionID;
+            IsLoggedIn = true;
+            // Kiểm tra xem Email và Password có null không
+            if (Email == null || Password == null)
+            {
+                IsLoggedIn = false; // Nếu điều khiển là null, thiết lập IsLoggedIn là false
+                return;
+            }
 
+            if (email.Length>60 || password.Length>60)
+            {
+                IsLoggedIn = false; // Nếu điều khiển là null, thiết lập IsLoggedIn là false
+                return;
+            }
+
+            // Kiểm tra đầu vào
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+            {
+                IsLoggedIn = false; // Nếu không có đầu vào, không cho phép đăng nhập
+                MessageBox.Show("Email and password cannot be empty", "Error");
+                return;
+            }
+            if(!IsGmailAddress(email))
+            {
+                IsLoggedIn = false;
+                return;
+            }    
+            // Thực hiện xác thực
             if (accountBLL.AuthenticateAccount(email, password, out permissionID))
             {
-                // Tài khoản và mật khẩu đúng
-                switch (permissionID)
-                {
-                    case 1:
-                        // Xử lý khi permissionID = 1 (Ví dụ: mở giao diện admin)
-                        openAdminForm(email, new[] {permissionID.ToString()}.ToList());
-                        break;
-                    case 2:
-                        // Xử lý khi permissionID = 2 (Ví dụ: mở giao diện người dùng thông thường)
-                        openUserForm(email, new[] { permissionID.ToString() }.ToList());
-                        break;
-                    default:
-                        MessageBox.Show("Invalid permission", "Error");
-                        break;
-                }
+                IsLoggedIn = true; // Nếu xác thực thành công
+
+                // Kiểm tra quyền truy cập dựa trên permissionID
+                //switch (permissionID)
+                //{
+                //    case 1:
+                //        openAdminForm(email, new[] { permissionID.ToString() }.ToList());
+                //        break;
+                //    case 2:
+                //        openUserForm(email, new[] { permissionID.ToString() }.ToList());
+                //        break;
+                //    default:
+                //        MessageBox.Show("Invalid permission", "Error");
+                //        IsLoggedIn = false; // Thiết lập IsLoggedIn là false
+                //        break;
+                //}
             }
             else
             {
-                // Tài khoản hoặc mật khẩu không đúng
+                IsLoggedIn = false; // Nếu xác thực không thành công
                 MessageBox.Show("Invalid account", "Error");
             }
-
-
         }
-
     }
 }

@@ -11,23 +11,34 @@ using System.Security.Principal;
 
 namespace BLL
 {
-
-    public class ACCOUNT_BLL
+    public interface IAccountBLL
     {
+        bool AuthenticateAccount(string email, string password, out int permissionID);
+    }
+
+    public class ACCOUNT_BLL : IAccountBLL
+    {
+
+        private readonly AccountAccess accountDAL;
+
+        public ACCOUNT_BLL()
+        {
+            accountDAL = new AccountAccess();
+        }
+
 
         public bool AuthenticateAccount(string email, string password, out int permissionID)
         {
             AccountAccess accountDAL = new AccountAccess();
-
             if (accountDAL.CheckAccountExists(email))
             {
                 permissionID = accountDAL.GetPermissionID(email, password);
-                return permissionID != 0;
+                return permissionID != 0; // Trả về true nếu permissionID khác 0
             }
             else
             {
                 permissionID = 0;
-                return false;
+                return false; // Trả về false nếu tài khoản không tồn tại
             }
         }
 

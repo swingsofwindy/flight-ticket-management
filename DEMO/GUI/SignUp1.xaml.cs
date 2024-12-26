@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -22,9 +23,31 @@ namespace GUI
 
     public partial class SignUp1 : Window
     {
+        public TextBox fName {  get; set; }
+        public TextBox lName { get; set; }
+        public TextBox Email { get; set; }
+        public TextBox Phone { get; set; }
+        public RadioButton Admin { get; set; }
+        public ComboBox Day { get; set; }
+        public ComboBox Month { get; set; }
+        public ComboBox Year { get; set; }
+        public PasswordBox Password { get; set; }
+        public PasswordBox RePassword { get; set; }
+
+        public bool IsSuccess { get; private set; }
+        private IAddMemberBLL addMemberBLL= new InsertProcessor();
+
         public SignUp1()
         {
             InitializeComponent();
+            fName= new TextBox();
+            lName= new TextBox();
+            Email= new TextBox();
+            Phone= new TextBox();
+            Admin= new RadioButton();
+
+            Password = new PasswordBox();
+            RePassword= new PasswordBox();
             //Day
             List<int> days = new List<int>();
             for (int i = 1; i <= 31; i++)
@@ -173,27 +196,120 @@ namespace GUI
             // Kiểm tra nếu chuỗi có chứa ký tự đặc biệt
             return regex.IsMatch(str);
         }
+
         static bool PositiveIntegerChecking(string str)
         {
-            // Biểu thức chính quy để kiểm tra ký tự đặc biệt
-            Regex regex = new Regex("[^0-9]");
-            return regex.IsMatch(str);
+            // Regex kiểm tra số điện thoại
+            string pattern = @"^0\d{9}$"; // Bắt đầu bằng 0, sau đó là 9 chữ số (10 chữ số tổng cộng)
+            return string.IsNullOrEmpty(str) || !Regex.IsMatch(str, pattern);
+        }
+        static bool ContainsVietnameseToneMarks(string input)
+        {
+            // Loại bỏ dấu tiếng Việt bằng Normalize
+            string normalized = input.Normalize(NormalizationForm.FormD);
+            foreach (char c in normalized)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) == UnicodeCategory.NonSpacingMark)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        bool TrySetBirthDate(int year, int month, int day, out DateTime birthDate)
+        {
+            birthDate = default;
+
+            // Kiểm tra năm, tháng, ngày hợp lệ
+            if (year >= DateTime.MinValue.Year && year <= DateTime.MaxValue.Year &&
+                month >= 1 && month <= 12 &&
+                day >= 1 && day <= DateTime.DaysInMonth(year, month))
+            {
+                birthDate = new DateTime(year, month, day);
+                return true;
+            }
+
+            return false;
         }
 
-        public string AddMember (ACCOUNT user, out string message)
+        public void Button_Click(object sender, RoutedEventArgs e)
         {
-            message= string.Empty;
+            if (string.IsNullOrEmpty(fName.Text) || string.IsNullOrEmpty(lName.Text))
+            {
+                IsSuccess = false;
+                MessageBox.Show("First name or last name is null.","Error");
+                return;
+            }
+
+            if (fName.Text.Length>40 || lName.Text.Length > 40)
+            {
+                IsSuccess = false;
+                MessageBox.Show("First name or last name is over 40 characters.","Error");
+                return;
+            }
+
+            if (ContainsVietnameseToneMarks(Email.Text) || ContainsVietnameseToneMarks(Phone.Text))
+            {
+                IsSuccess = false;
+                MessageBox.Show("Email or phone number have tone marks.", "Error");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(Password.Password) || string.IsNullOrEmpty(RePassword.Password)||string.IsNullOrEmpty(Email.Text))
+            {
+                IsSuccess = false;
+                MessageBox.Show("Email, password or confirm password is null.", "Error");
+                return;
+            }
+
+            if (Email.Text.Length>60|| Password.Password.Length > 60 || RePassword.Password.Length > 60)
+            {
+                IsSuccess = false;
+                MessageBox.Show("Email, password or confirm password is over 60 characters.", "Error");
+                return;
+            }
+
+            if (Password.Password!=RePassword.Password)
+            {
+                IsSuccess=false;
+                MessageBox.Show("Confirm password fail.", "Error");
+                return;
+            }
+
+            if (!TrySetBirthDate((int)Year.SelectedValue, (int)Month.SelectedValue, (int)Day.SelectedValue, out var birthDate))
+            {
+                IsSuccess = false;
+                MessageBox.Show("Birth invalid");
+                return;
+            }
+            User.UserName = fName.Text.Trim() + " " + lName.Text.Trim();
+            User.Email = Email.Text.Trim() + "@gmail.com";
+            User.Birth = new DateTime((int)Year.SelectedValue, (int)Month.SelectedValue, (int)Day.SelectedValue);
+            User.PasswordUser = RePassword.Password.Trim();
+            User.Phone = Phone.Text.Trim();
+            IsSuccess = true;
+            
             if (HasSpecialCharacters(User.UserName))
             {
-                message = "User Name has special character";
-                return message;
+                IsSuccess = false;
+                MessageBox.Show("User Name has special character");
+                return;
             }
-            if (PositiveIntegerChecking(User.Phone))
+            if (PositiveIntegerChecking(User.Phone)) 
             {
-                message = "User Phone has special character";
-                return message;
+                IsSuccess = false;
+                MessageBox.Show("User Phone has special character, null or not 0 first");
+                return;
             }
-            if (Admin_bt.AllowDrop)
+
+            if (User.Phone.Length != 10)
+            {
+                IsSuccess = false;
+                MessageBox.Show("Phone number contains 10 characters.", "Error");
+                return;
+            }
+
+            if (Admin.IsChecked==true)
             {
                 User.PermissonID = 1;
             }
@@ -203,34 +319,21 @@ namespace GUI
             }
             string kq = "";
             //accBLL.SignUp(User, ref kq);
-            new BLL.InsertProcessor().SignUp(User, ref kq);
+            addMemberBLL.Add_Member(User, ref kq);
 
             if (kq == "")
             {
-                return "Sign Up Success";
+                IsSuccess = true;
+                MessageBox.Show("Member Add Success");
+                /*Login f = new Login();
+                f.Show();*/
+                Window.GetWindow(this).Close();
             }
             else
             {
-                message = kq;
-                return message;
+                IsSuccess = false;
+                MessageBox.Show(kq);
             }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            User.UserName = txtFName.Text.Trim() + " " + txtLName.Text.Trim();
-            User.Email = txtMailAdd.Text.Trim() + "@gmail.com";
-            User.Birth = new DateTime((int)Y_comboBox.SelectedValue, (int)M_comboBox.SelectedValue, (int)D_comboBox.SelectedValue);
-            User.PasswordUser = txtRePassword.Password.Trim();
-            User.Phone = txtPhone.Text.Trim();
-
-            string message;
-            string result=AddMember(User, out message);
-            MessageBox.Show(result);
-            if(result == "Sign Up Success")
-            {
-                Window.GetWindow(this).Close();
-            }    
         }
     }
 }

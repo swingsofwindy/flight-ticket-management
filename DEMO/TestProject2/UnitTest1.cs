@@ -1,4 +1,4 @@
-namespace DALNUnitTests
+namespace TestProject2
 {
     public class Tests
     {

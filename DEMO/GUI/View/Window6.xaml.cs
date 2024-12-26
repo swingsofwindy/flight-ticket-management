@@ -1,29 +1,15 @@
 ﻿using BLL;
-using ControlzEx.Standard;
 using DTO;
-using GUI.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.Remoting.Lifetime;
-using System.Security.Policy;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Button = System.Windows.Controls.Button;
 
 namespace GUI.View
 {
@@ -32,80 +18,77 @@ namespace GUI.View
     /// </summary>
     public partial class Window6 : UserControl
     {
-        private ObservableCollection<CustomerDTO> ViewCustomerData { get; set; } // Danh sách khách hàng được nhập
-        public ObservableCollection<FlightInforDTO> Flights { get; set; } // Danh sách chuyến bay thảo mãn
+        public TextBox ID { get; set; }
+        public TextBox Name { get; set; }
+        public TextBox Phone { get; set; }
+        public TextBox Email { get; set; }
+        public DatePicker Birth { get; set; }
+        public bool IsSuccess { get;  set; }
+        public bool IsSuccess1 { get; set; }
+        public Button deleteButton;
+        public ListView myListView;
 
-        private FlightDTO selectedFlight { get; set; } // Chuyến bay được chọn
-        private TicketClassDTO selectedTicketClass { get; set; } // Hạng vé ứng với chuyến bay được chọn
+        public ObservableCollection<CustomerDTO> ViewCustomerData { get; set; }
+        public ObservableCollection<FlightInforDTO> Flights { get; set; }
 
-        private Int32 maxNumTicket = 0; // Số vé tôi đa cho phép nhập = số ghế trống của chuyến bay được chọn
-        private Int32 numTicket = 0; // Số vé cần/đang nhập
-        private Int64 ticketPrice = 0; // Giá mỗi vé
+        public FlightDTO selectedFlight { get; set; }
+        public TicketClassDTO selectedTicketClass { get; set; }
 
-        private ICollectionView customerView;
+        private int maxNumTicket = 0;
+        private int numTicket = 0;
+        private long ticketPrice = 0;
+
+        public ICollectionView customerView;
 
         public List<AirportDTO> airports { get; set; }
         private Dictionary<string, string> airportDictionary = new Dictionary<string, string>();
         public List<TicketClassDTO> ticketClasses { get; set; }
         private Dictionary<string, string> ticketClassDictionary = new Dictionary<string, string>();
         public ICommand DeleteCommand { get; private set; }
+
         public Window6()
         {
-            InitializeComponent();
-            //this.Loaded += Popup_Loaded;
-            //Application.Current.Deactivated += Popup_Deactivated;
+            myListView=new ListView();
+            selectedFlight = new FlightDTO(); // Khởi tạo nếu nó là null
+            selectedTicketClass = new TicketClassDTO(); // Khởi tạo nếu nó là null
+            ViewCustomerData = new ObservableCollection<CustomerDTO>(); // Khởi tạo nếu nó là null
+            customerView = CollectionViewSource.GetDefaultView(ViewCustomerData); // Khởi tạo nếu nó là null
 
-            // Test data
-            ViewCustomerData = new ObservableCollection<CustomerDTO>();
-            numTicket = ViewCustomerData.Count;
-
-            customerView = CollectionViewSource.GetDefaultView(ViewCustomerData);
-            MyListView.ItemsSource = customerView;
-
-            Airport_BLL airport_bll = new Airport_BLL();
-            Ticket_Class_BLL ticket_class_bll = new Ticket_Class_BLL();
-            airports = airport_bll.L_airport();
-            ticketClasses = ticket_class_bll.L_TicketClass();
-            airportDictionary = airports.ToDictionary(airport => airport.AirportID, airport => airport.AirportName);
-            ticketClassDictionary = ticketClasses.ToDictionary(ticketClass => ticketClass.TicketClassID, ticketClass => ticketClass.TicketClassName);
-            SourceAirport_popup.ItemsSource = airports;
-            DestinationAirport_popup.ItemsSource = airports;
-            TicketClass_popup.ItemsSource = ticketClasses;
-
-            // Test data
-           /* var flights = new List<FlightInforDTO>
-            {
-            new FlightInforDTO{Flight = new FlightDTO{FlightID = "FL1001",SourceAirportID = "S101",DestinationAirportID = "D201",FlightDay = DateTime.Today.AddDays(1),FlightTime = TimeSpan.FromHours(3),Price = 110.00m},bookedTickets = 52,emptySeats = 148},
-            new FlightInforDTO{Flight = new FlightDTO{FlightID = "FL1002",SourceAirportID = "S102",DestinationAirportID = "D202",FlightDay = DateTime.Today.AddDays(2),FlightTime = TimeSpan.FromHours(4),Price = 120.00m},bookedTickets = 54,emptySeats = 146},
-            new FlightInforDTO{Flight = new FlightDTO{FlightID = "FL1003",SourceAirportID = "S101",DestinationAirportID = "D201",FlightDay = DateTime.Today.AddDays(1),FlightTime = TimeSpan.FromHours(3),Price = 110.00m},bookedTickets = 52,emptySeats = 148},
-            new FlightInforDTO{Flight = new FlightDTO{FlightID = "FL1004",SourceAirportID = "S102",DestinationAirportID = "D202",FlightDay = DateTime.Today.AddDays(2),FlightTime = TimeSpan.FromHours(4),Price = 120.00m},bookedTickets = 54,emptySeats = 146},
-            new FlightInforDTO{Flight = new FlightDTO{FlightID = "FL1005",SourceAirportID = "S101",DestinationAirportID = "D201",FlightDay = DateTime.Today.AddDays(1),FlightTime = TimeSpan.FromHours(3),Price = 110.00m},bookedTickets = 52,emptySeats = 148},
-            new FlightInforDTO{Flight = new FlightDTO{FlightID = "FL1006",SourceAirportID = "S102",DestinationAirportID = "D202",FlightDay = DateTime.Today.AddDays(2),FlightTime = TimeSpan.FromHours(4),Price = 120.00m},bookedTickets = 54,emptySeats = 146},
-            new FlightInforDTO{Flight = new FlightDTO{FlightID = "FL1007",SourceAirportID = "S101",DestinationAirportID = "D201",FlightDay = DateTime.Today.AddDays(1),FlightTime = TimeSpan.FromHours(3),Price = 110.00m},bookedTickets = 52,emptySeats = 148},
-            new FlightInforDTO{Flight = new FlightDTO{FlightID = "FL1008",SourceAirportID = "S102",DestinationAirportID = "D202",FlightDay = DateTime.Today.AddDays(2),FlightTime = TimeSpan.FromHours(4),Price = 120.00m},bookedTickets = 54,emptySeats = 146},
-            new FlightInforDTO{Flight = new FlightDTO{FlightID = "FL1009",SourceAirportID = "S101",DestinationAirportID = "D201",FlightDay = DateTime.Today.AddDays(1),FlightTime = TimeSpan.FromHours(3),Price = 110.00m},bookedTickets = 52,emptySeats = 148},
-            new FlightInforDTO{Flight = new FlightDTO{FlightID = "FL10010",SourceAirportID = "S102",DestinationAirportID = "D202",FlightDay = DateTime.Today.AddDays(2),FlightTime = TimeSpan.FromHours(4),Price = 120.00m},bookedTickets = 54,emptySeats = 146},
-            new FlightInforDTO{Flight = new FlightDTO{FlightID = "FL10011",SourceAirportID = "S101",DestinationAirportID = "D201",FlightDay = DateTime.Today.AddDays(1),FlightTime = TimeSpan.FromHours(3),Price = 110.00m},bookedTickets = 52,emptySeats = 148},
-            new FlightInforDTO{Flight = new FlightDTO{FlightID = "FL10012",SourceAirportID = "S102",DestinationAirportID = "D202",FlightDay = DateTime.Today.AddDays(2),FlightTime = TimeSpan.FromHours(4),Price = 120.00m},bookedTickets = 54,emptySeats = 146},
-            new FlightInforDTO{Flight = new FlightDTO{FlightID = "FL10013",SourceAirportID = "S101",DestinationAirportID = "D201",FlightDay = DateTime.Today.AddDays(1),FlightTime = TimeSpan.FromHours(3),Price = 110.00m},bookedTickets = 52,emptySeats = 148},
-            new FlightInforDTO{Flight = new FlightDTO{FlightID = "FL10014",SourceAirportID = "S102",DestinationAirportID = "D202",FlightDay = DateTime.Today.AddDays(2),FlightTime = TimeSpan.FromHours(4),Price = 120.00m},bookedTickets = 54,emptySeats = 146},
-            };*/
-
-            dataGridFlights.ItemsSource = Flights;
 
             DeleteCommand = new RelayCommand<object>(DeleteItem);
             DataContext = this;
-
         }
-        private void DeleteItem(object parameter)
+
+        private void InitializeTestData()
+        {
+
+            // Dữ liệu test khách hàng
+            ViewCustomerData = new ObservableCollection<CustomerDTO>
+            {
+                new CustomerDTO { ID = "123456789012", CustomerName = "Nguyen Van A", Email = "nguyenvana@gmail.com"},
+                new CustomerDTO { ID = "123456789013", CustomerName = "Tran Thi B", Email = "tranthib@gmail.com"}
+            };
+        }
+        public void DeleteItem(object parameter)
         {
             var itemToRemove = parameter as CustomerDTO;
-            if (itemToRemove != null)
+            if (itemToRemove != null && ViewCustomerData.Contains(itemToRemove))
             {
-                ViewCustomerData.Remove(itemToRemove);
-                numTicket = ViewCustomerData.Count;
-                TicketQuantity.Text = numTicket.ToString();
-                TotalPrice.Text = (numTicket * ticketPrice).ToString() + "  VND";
+                if (ViewCustomerData.Contains(itemToRemove))
+                {
+                    ViewCustomerData.Remove(itemToRemove);
+                    numTicket = ViewCustomerData.Count;
+                    TicketQuantity.Text = numTicket.ToString();
+                    TotalPrice.Text = (numTicket * ticketPrice).ToString() + "  VND";
+
+                    // Cập nhật trạng thái thành công
+                    IsSuccess1 = true;
+                }
+                else
+                {
+                    // Không tìm thấy khách hàng trong danh sách
+                    IsSuccess1 = false;
+                }
             }
         }
 
@@ -151,7 +134,7 @@ namespace GUI.View
                     }
                     ViewCustomerData = cus;
                     customerView = CollectionViewSource.GetDefaultView(ViewCustomerData);
-                    MyListView.ItemsSource = customerView;
+                    myListView.ItemsSource = customerView;
                 }
             }
         }
@@ -187,6 +170,7 @@ namespace GUI.View
 
             /*MessageBox.Show(flights.list.Count + flights.list[0].Flight.FlightID + flights.state + "\n Chỉ dùng cho debug", "Debug");*/
         }
+
         static bool IsValidEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
@@ -294,7 +278,7 @@ namespace GUI.View
             }
         }
 
-        private void Confirm_Click(object sender, RoutedEventArgs e)
+        public void Confirm_Click(object sender, RoutedEventArgs e)
         {
             /*
              Mô tả: Thêm dữ liệu vào DB, nếu thành công xóa toàn bộ dữ liệu trên UI để nhập tiếp
@@ -302,14 +286,17 @@ namespace GUI.View
             string state = CheckInfo();
             if (state == string.Empty)
             {
+                IsSuccess = true;
                 state = new BLL.InsertProcessor().Add_ListBookingTicket(customerView.OfType<CustomerDTO>().ToList(), selectedFlight, selectedTicketClass, DateTime.Now, 1);
             }
             else
             {
-                var originalTopmost = Application.Current.MainWindow.Topmost;
-                Application.Current.MainWindow.Topmost = true;
-                MessageBox.Show(Application.Current.MainWindow, state, "Error");
-                Application.Current.MainWindow.Topmost = originalTopmost;
+                // var originalTopmost = Application.Current.MainWindow.Topmost;
+                // Application.Current.MainWindow.Topmost = true;
+                // MessageBox.Show(Application.Current.MainWindow, state, "Error");
+                //Application.Current.MainWindow.Topmost = originalTopmost;
+                IsSuccess = false;
+                MessageBox.Show(state,"Error");
                 return;
             }
             if (state == string.Empty)
@@ -331,7 +318,7 @@ namespace GUI.View
             ViewCustomerData = new ObservableCollection<CustomerDTO>();
             numTicket = ViewCustomerData.Count;
             customerView = CollectionViewSource.GetDefaultView(ViewCustomerData);
-            MyListView.ItemsSource = customerView;
+            myListView.ItemsSource = customerView;
 
             maxNumTicket = 0;
             numTicket = 0;

@@ -1,4 +1,4 @@
-namespace DAL_NUnitTests
+namespace TestProject1
 {
     public class Tests
     {

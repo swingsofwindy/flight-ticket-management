@@ -8,7 +8,6 @@ using DAL;
 using System.Data.SqlClient;
 using System.Data;
 using System.Security.Principal;
-
 namespace BLL
 {
     public class BookingTicket_BLL
@@ -17,7 +16,6 @@ namespace BLL
         {
             return new BookingTicketAccess().GetBookingTicket_DepartureTime(TicketID);
         }
-
         public static string UpdateStatus()
         {
             BLL.SearchProcessor prc = new BLL.SearchProcessor();
